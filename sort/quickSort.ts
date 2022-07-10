@@ -35,18 +35,31 @@ console.log(quickSort1(arr))
 
 // 原地快排  不开辟新的空间
 // 基本思路：依靠双指针
+function quick(arr: number[], start: number, end: number): number {
+  let init = start
+  let flag = arr[init]
+  start++
+  while (start <= end) {
+    while (arr[end] >= flag) end--
+    while (arr[start] < flag) start++
+    if (start < end) {
+      [arr[start], arr[end]] = [arr[end], arr[start]];
+      start++
+      end--
+    }
+  }
+  [arr[init], arr[start - 1]] = [arr[start - 1], arr[init]]
+  return start
+}
 
-// function quickSort2 (arr: number[], start: number, end: number): void{
-//   if (end - start < 1) return
-//   let i = start
-//   let j = end
-//   if (i < j) {
-//     while (i<=j) {
-      
-//     }
-//   } else {
-//     quickSort2(arr, start, i)
-//     quickSort2(arr, i + 1, end)
-//   }
-// }
+function quickSort2 (arr: number[], start: number, end: number) {
+  if (start < end) {
+    let index: number = quick(arr, start, end)
+    quickSort2(arr, start, index - 1)
+    quickSort2(arr, index, end)
+  }
+  return arr
+}
+
+console.log(quickSort2(arr, 0, arr.length - 1))
 
