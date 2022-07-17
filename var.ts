@@ -1,4 +1,4 @@
-export const arr = [1,1,1,1]//[12,45,121,1,1,1,2,54,8,44,848,7]
+export const arr = [12,45,121,1,1,1,2,54,8,44,848,7]
 export const binaryTree = {
   val: 5,
   left: {
