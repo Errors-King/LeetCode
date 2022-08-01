@@ -10,20 +10,34 @@
  * @return {number[][]}
  */
 var permute = function(nums) {
+
   const res = []
-  function back(res, temp, nums) {
+  const visited = new Map()
+  const temp = []
+  dfs()
+  return res
+
+
+  function dfs() {
+    //终止条件
+
     if (temp.length === nums.length) {
       res.push([...temp])
+      return
     }
+
+
     for (let i = 0; i < nums.length; i++) {
-      if (temp.includes(nums[i])) continue
+      if (visited.has(nums[i])) {
+        continue
+      }
       temp.push(nums[i])
-      back(res, temp, nums)
+      visited.set(nums[i], 1)
+      dfs(nums, temp)
       temp.pop()
+      visited.delete(nums[i])
     }
   }
-  back(res, [], nums)
-  return res
 };
 // @lc code=end
 
